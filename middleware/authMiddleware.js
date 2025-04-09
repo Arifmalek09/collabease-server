@@ -4,8 +4,6 @@ import User from "../models/userModel.js";
 
 const protectRoute = asyncHandler(async (req, res, next) => {
   let token = req.cookies.token;
-  console.log(req.cookies , "req.cookies")
-  console.log(token , "token")
   if (!token) {
     return res
       .status(401)
@@ -14,9 +12,8 @@ const protectRoute = asyncHandler(async (req, res, next) => {
 
   try {
     const decodedToken = jwt.verify(token, "MNSVM@1%653hvbhx6534nmbhd78647");
-    console.log("Decoded token:", decodedToken);
 
-    const resp = await User.findById(decodedToken.userId).select("isAdmin email");
+    const resp = await User.findById(decodedToken.userId).select("isAdmin email role");
     if (!resp) {
       return res.status(401).json({ status: false, message: "User not found." });
     }
@@ -24,6 +21,7 @@ const protectRoute = asyncHandler(async (req, res, next) => {
     req.user = {
       email: resp.email,
       isAdmin: resp.isAdmin,
+      role: resp.role,
       userId: decodedToken.userId,
     };
 

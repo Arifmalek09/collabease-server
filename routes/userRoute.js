@@ -20,9 +20,9 @@ router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.post("/logout", logoutUser);
 
-router.get("/get-team", protectRoute, isAdminRoute, getTeamList);
+router.get("/get-team", protectRoute, getTeamList);
 router.get("/notifications", protectRoute, getNotificationsList);
-router.get("/get-status", protectRoute, isAdminRoute, getUserTaskStatus);
+router.get("/get-status", protectRoute, getUserTaskStatus);
 
 router.put("/profile", protectRoute, updateUserProfile);
 router.put("/read-noti", protectRoute, markNotificationRead);
