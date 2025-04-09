@@ -17,7 +17,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:3001", "https://collab-ease-manager.vercel.app"],
+    origin: ["http://localhost:3000", "http://localhost:3001", "https://collabease-frontend.vercel.app"],
     methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
